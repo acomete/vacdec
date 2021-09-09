@@ -39,8 +39,8 @@ def _setup_logger() -> None:
     console_handler.setFormatter(log_formatter)
     console_handler.propagate = False
     logging.getLogger().addHandler(console_handler)
-    # log.setLevel(logging.DEBUG)
-    log.setLevel(logging.INFO)
+    log.setLevel(logging.DEBUG)
+    # log.setLevel(logging.INFO)
 
 
 def find_key(key: KID, keys_file: str) -> Optional[cosekey.CoseKey]:
@@ -234,7 +234,8 @@ def output_covid_cert_data(cert: str, keys_file: str) -> None:
 
     # decode COSE message (no signature verification done)
     cose_msg = CoseMessage.decode(decompressed)
-    # pprint.pprint(cose_msg)
+
+    log.debug(cose_msg);
 
     # decode the CBOR encoded payload and print as json
     log.debug(cose_msg.phdr)
